@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Http\Requests\UpdatePetRequest;
+use App\Http\Requests\StorePetRequest;
 
 class PetController extends Controller
 {
@@ -48,9 +49,9 @@ class PetController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePetRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
         $response = Http::post("https://petstore.swagger.io/v2/pet", [ 
             "name" => $data['name'],
             "status" => $data['status']
