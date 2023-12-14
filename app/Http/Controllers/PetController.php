@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Http\Requests\UpdatePetRequest;
 
 class PetController extends Controller
 {
@@ -17,7 +18,7 @@ class PetController extends Controller
         $pet_id = 1;
 
 
-        while (count($pets_array) !== 5) {
+        while (count($pets_array) !== 2) {
             $response = Http::get("https://petstore.swagger.io/v2/pet/$pet_id");
 
             if($response->status() === 200) {
@@ -79,9 +80,9 @@ class PetController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdatePetRequest $request, string $id)
     {
-        $data = $request->all();
+        $data = $request->validated();
         $response = Http::put("https://petstore.swagger.io/v2/pet", [
             "id" => $data['id'],
             "name" => $data['name'],

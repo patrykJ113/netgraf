@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PetRequest extends FormRequest
+class UpdatePetRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class PetRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "id" => "required",
+            "name" => "string|min:4|max:20",
+            "status" => "string|min:4|max:20"
         ];
     }
 }
