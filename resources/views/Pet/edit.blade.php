@@ -14,10 +14,16 @@
         <label>
             Name
             <input type="text" name="name">
+            @error('name')
+                <p>{{ $message }}</p>
+            @enderror
         </label>
         <label>
             Status
             <input type="text" name="status">
+            @error('status')
+                <p>{{ $message }}</p>
+            @enderror
         </label>
         <input type="hidden" name="id" value="{{$id}}">
         <button type="submit">Edit</button>
