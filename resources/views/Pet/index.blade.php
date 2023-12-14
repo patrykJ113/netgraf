@@ -10,7 +10,11 @@
     <h1>Pett view!!!</h1>
 
     @foreach ($pets as $pet )
-        <pre>{{ $pet->name }}</pre>
+        <pre>{{ $pet->name }} {{ $pet->id }}</pre>
     @endforeach
+
+    <a href="{{ url('/pet/create') }}">
+        <button>Add New Pet to Store</button>
+    </a>
 </body>
 </html>

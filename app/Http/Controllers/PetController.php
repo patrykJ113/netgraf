@@ -41,7 +41,7 @@ class PetController extends Controller
      */
     public function create()
     {
-        //
+        return view('Pet.create');
     }
 
     /**
@@ -49,7 +49,13 @@ class PetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $response = Http::post("https://petstore.swagger.io/v2/pet", [
+            "name" => $data['name'],
+            "status" => $data['status']
+        ]);
+
+        return redirect('/');
     }
 
     /**
