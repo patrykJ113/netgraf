@@ -13,7 +13,7 @@
     @foreach ($pets as $pet )
         <li>
             <div>{{ $pet->name }} {{ $pet->id }}</div>
-            <a href="">
+            <a href='{{ url("/pet/$pet->id/edit") }}'>
                 <button>Edit</button>
             </a>
             <form action='{{ url("/pet/$pet->id") }}' method="POST">

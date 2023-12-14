@@ -50,11 +50,11 @@ class PetController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $response = Http::post("https://petstore.swagger.io/v2/pet", [
+        $response = Http::post("https://petstore.swagger.io/v2/pet", [ 
             "name" => $data['name'],
             "status" => $data['status']
         ]);
-
+        
         return redirect('/');
     }
 
@@ -71,7 +71,9 @@ class PetController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('Pet.edit', [
+            "id" => $id
+        ]);
     }
 
     /**
@@ -79,7 +81,13 @@ class PetController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->all();
+        $response = Http::put("https://petstore.swagger.io/v2/pet", [
+            "id" => $data['id'],
+            "name" => $data['name'],
+            "status" => $data['status']
+        ]);
+        return redirect('/');
     }
 
     /**
