@@ -9,9 +9,21 @@
 <body>
     <h1>Pett view!!!</h1>
 
+    <ul>
     @foreach ($pets as $pet )
-        <pre>{{ $pet->name }} {{ $pet->id }}</pre>
-    @endforeach
+        <li>
+            <div>{{ $pet->name }} {{ $pet->id }}</div>
+            <a href="">
+                <button>Edit</button>
+            </a>
+            <form action='{{ url("/pet/$pet->id") }}' method="POST">
+                @csrf
+                @method('DELETE')
+                <button>Delete</button>
+            </form>
+        </li>
+        @endforeach
+    </ul>
 
     <a href="{{ url('/pet/create') }}">
         <button>Add New Pet to Store</button>

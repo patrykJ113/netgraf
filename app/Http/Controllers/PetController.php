@@ -87,6 +87,7 @@ class PetController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $response = Http::delete("https://petstore.swagger.io/v2/pet/$id");
+        return redirect('/');
     }
 }
